@@ -1,7 +1,6 @@
 #include <iostream>
-#include <Windows.h>
 #include <consoleapi2.h>
-
+#include <Windows.h>
 using namespace std;
 
 
@@ -38,30 +37,33 @@ uChar rightRotate(uChar val, int n)
 	t = t >> 8;
 	return t;
 }
+
+//Entry point of the programm
+
 int main()
 {
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	setlocale(LC_ALL, "rus");
-	char str[] = "Текст для шифровки";
-	char key[] = "Пароль";
+	char str[] = "Text for encoding";
+	char key[] = "Password";
 	int sum = 0;
 	for (int i = 0; i < strlen(key); i++)
 	{
 		sum += key[i] < 0 ? -key[i] : key[i];
 	}
 	cout << sum << endl;
-	cout << "Оригинал: " << str;
+	cout << "Original: " << str;
 	for (int i = 0; i < strlen(str); i++)
 	{
 		*(str + i) = leftRotate(*(str + i), sum);
 	}
-	cout << endl << "Закодированн: " << str;
+	cout << endl << "Encoded: " << str;
 	for (int i = 0; i < strlen(str); i++)
 	{
 		*(str + i) = rightRotate(*(str + i), sum);
 	}
-	cout << endl << "Декодированн: " << str;
+	cout << endl << "Decoded: " << str;
 	return 0;
 }
 
